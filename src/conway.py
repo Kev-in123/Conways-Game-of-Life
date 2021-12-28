@@ -76,7 +76,6 @@ class Conway:
         """
         update the cell
         """
-
         # create an instance of the grid to be used in the function
         grid = self.grid
         # get the state of the cell
