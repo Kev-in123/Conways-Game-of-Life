@@ -76,6 +76,7 @@ class Conway:
         """
         update the cell
         """
+
         # create an instance of the grid to be used in the function
         grid = self.grid
         # get the state of the cell
@@ -84,38 +85,42 @@ class Conway:
         section = []
         # get the type of the cell
         type_ = self.get_type(row, column)
-        
+
         # check if the cell is on the corner
         if type_ == "corner":
             if row == 0:
                 # check if the cell is on the top left corner
                 if column == 0:
                     # add the top left corner's neighbors to the section
-                    section = [[grid[row][column + 1]],
-                               [grid[row + 1][column],
-                                grid[row + 1][column + 1]]]
+                    section = [
+                        grid[row][column + 1], grid[row + 1][column],
+                        grid[row + 1][column + 1]
+                    ]
 
                 # check if the cell is on the top right corner
                 elif column == 9:
                     # add the top right corner's neighbors to the section
-                    section = [[grid[row][column - 1]],
-                               [grid[row + 1][column - 1],
-                                grid[row + 1][column]]]
+                    section = [
+                        grid[row][column - 1], grid[row + 1][column - 1],
+                        grid[row + 1][column]
+                    ]
 
             elif row == 9:
                 # check if the cell is on the bottom left corner
                 if column == 0:
                     # add the bottom left corner's neighbors to the section
-                    section = [[grid[row - 1][column],
-                                grid[row - 1][column + 1]],
-                               [grid[row][column + 1]]]
+                    section = [
+                        grid[row - 1][column], grid[row - 1][column + 1],
+                        grid[row][column + 1]
+                    ]
 
                 # check if the cell is on the bottom right corner
                 elif column == 9:
                     # add the bottom right corner's neighbors to the section
-                    section = [[grid[row - 1][column - 1],
-                                grid[row - 1][column]],
-                               [grid[row][column - 1]]]
+                    section = [
+                        grid[row - 1][column - 1], grid[row - 1][column],
+                        grid[row][column - 1]
+                    ]
 
         # check if the cell is on the edge
         elif type_ == "edge":
@@ -124,67 +129,67 @@ class Conway:
                 # check if the cell is on the top edge
                 if row == 0:
                     # add the top nth edge's neighbors to the section
-                    section = [[grid[row][column - 1], grid[row][column + 1]],
-                               [grid[row + 1][column - 1],
-                                grid[row + 1][column],
-                                grid[row + 1][column + 1]]]
+                    section = [
+                        grid[row][column - 1], grid[row][column + 1],
+                        grid[row + 1][column - 1], grid[row + 1][column],
+                        grid[row + 1][column + 1]
+                    ]
 
                 # check if the cell is on the bottom edge
                 elif row == 9:
                     # add the bottom nth edge's neighbors to the section
-                    section = [[grid[row - 1][column - 1],
-                                grid[row - 1][column],
-                                grid[row - 1][column + 1]],
-                               [grid[row][column - 1],
-                                grid[row][column + 1]]]
+                    section = [
+                        grid[row - 1][column - 1], grid[row - 1][column],
+                        grid[row - 1][column + 1], grid[row][column - 1],
+                        grid[row][column + 1]
+                    ]
 
             # check if the cell is on the left/right edge
             elif 0 < row < 9:
                 # check if the cell is on the left edge
                 if column == 0:
                     # add the left nth edge's neighbors to the section
-                    section = [[grid[row - 1][column],
-                                grid[row - 1][column + 1]],
-                               [grid[row][column + 1]],
-                               [grid[row + 1][column],
-                               grid[row + 1][column + 1]]]
+                    section = [
+                        grid[row - 1][column], grid[row - 1][column + 1],
+                        grid[row][column + 1], grid[row + 1][column],
+                        grid[row + 1][column + 1]
+                    ]
 
                 # check if the cell is on the right edge
                 elif column == 9:
                     # add the right nth edge's neighbors to the section
-                    section = [[grid[row - 1][column - 1],
-                                grid[row - 1][column]],
-                               [grid[row][column - 1]],
-                               [grid[row + 1][column - 1],
-                                grid[row + 1][column]]]
+                    section = [
+                        grid[row - 1][column - 1], grid[row - 1][column],
+                        grid[row][column - 1], grid[row + 1][column - 1],
+                        grid[row + 1][column]
+                    ]
 
         # normal cell
         else:
             # add the cell's neighbors to the section
-            section = [[grid[row - 1][column - 1],
-                        grid[row - 1][column],
-                        grid[row - 1][column + 1]],
-                       [grid[row][column - 1],
-                        grid[row][column + 1]],
-                       [grid[row + 1][column - 1],
-                        grid[row + 1][column],
-                        grid[row + 1][column + 1]]]
+            section = [
+                grid[row - 1][column - 1], grid[row - 1][column],
+                grid[row - 1][column + 1], grid[row][column - 1],
+                grid[row][column + 1], grid[row + 1][column - 1],
+                grid[row + 1][column], grid[row + 1][column + 1]
+            ]
 
         # get the number of live neighbors
-        neighbours = sum(map(sum, section))
+        neighbours = sum(section)
 
         # apply the rules of the game
-        # 
+        #
         # any live cell with two or three live neighbours survives
         # all other live cells die in the next generation
         # any dead cell with three live neighbours becomes a live cell
         # all other dead cells stay dead
         if (state == 1 and neighbours in {2, 3}) or (state == 0 and neighbours == 3):
-          state = 1
+            state = 1
         else:
-          state = 0
+            state = 0
 
         # return the new state of the cell
         return state
+
 
     
