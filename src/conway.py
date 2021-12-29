@@ -48,11 +48,7 @@ class Conway:
                 # update the cell on the new grid
                 cells[row][column] = self.update_cell(row, column)
 
-        # loop through the grid
-        for row in range(len(self.grid)):
-            for column in range(len(self.grid[0])):
-                # update the cell on the original grid
-                self.grid[row][column] = cells[row][column]
+        self.grid = cells
 
     def get_type(self, row, column):
         """
