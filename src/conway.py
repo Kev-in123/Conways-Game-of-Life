@@ -3,7 +3,7 @@ class Conway:
         """
         initialize a 10x10 grid
         I know the grid in Conway's Game of Life is infinite but who cares
-        outputs will only be off on the edges
+        outputs will only be off on the edges/corners
         """
         self.grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
