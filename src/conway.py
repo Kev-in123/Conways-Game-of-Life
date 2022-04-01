@@ -40,7 +40,6 @@ class Conway:
                  for _ in range(len(self.grid))]
         for row in range(len(self.grid)):
             for column in range(len(self.grid[0])):
-
                 cells[row][column] = self.update_cell(row, column)
         self.grid = cells
 
@@ -62,12 +61,10 @@ class Conway:
                     section = [
                         grid[row][column + 1], grid[row + 1][column],
                         grid[row + 1][column + 1]]
-
                 elif column == 9:
                     section = [
                         grid[row][column - 1], grid[row + 1][column - 1],
                         grid[row + 1][column]]
-
             elif row == 9:
                 if column == 0:
                     section = [
