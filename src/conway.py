@@ -3,11 +3,9 @@ class Conway:
         self.length = 101
         self.grid = data = [[0]*self.length for _ in range(self.length)]
         self.modify = [
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 0],
-            [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0]]
+            [0, 1, 0],
+            [0, 0, 1],
+            [1, 1, 1]]
 
         for index, sub_array in enumerate(self.modify):
             for sub_index, item in enumerate(sub_array):
