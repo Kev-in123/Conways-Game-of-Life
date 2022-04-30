@@ -31,7 +31,7 @@ class Conway:
         grid_string = ""
         for i in self.grid:
             for j in i:
-                grid_string += str(j) + " "
+                grid_string += f"{j} "
             grid_string += "\n"
         return grid_string
 
